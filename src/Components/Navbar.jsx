@@ -1,14 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import logo from "/public/logo.jpg";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 px-4 shadow-md">
+      {/* Logo */}
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <div className="flex items-center gap-2">
+          <div>
+            <img
+            className="w-10 h-10 rounded-full"
+              src={logo}
+              alt="Logo"
+            />
+          </div>
+          <div>
+            <Link to="/" className="text-xl font-bold">
+              Study Buddy
+            </Link>
+          </div>
+        </div>
       </div>
+
+      {/* Right Side Icons */}
       <div className="flex-none">
+        {/* Cart Dropdown */}
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -40,16 +59,14 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
+
+        {/* User Avatar Dropdown */}
+        <div className="dropdown dropdown-end ml-3">
+          <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="User Avatar"
               />
             </div>
           </div>
@@ -58,16 +75,16 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link to="/profile" className="justify-between">
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a>Settings</a>
+              <Link to="/settings">Settings</Link>
             </li>
             <li>
-              <a>Logout</a>
+              <Link to="/logout">Logout</Link>
             </li>
           </ul>
         </div>
