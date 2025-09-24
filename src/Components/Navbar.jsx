@@ -1,19 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "/public/logo.jpg";
+import useAuth from "../hook/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+
+    const handleLogout = () => {
+    logout()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged Out!",
+          text: "You have successfully logged out.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
+  };
+
+
+
   return (
     <div className="navbar bg-base-100 px-4 shadow-md">
       {/* Logo */}
       <div className="flex-1">
         <div className="flex items-center gap-2">
           <div>
-            <img
-            className="w-10 h-10 rounded-full"
-              src={logo}
-              alt="Logo"
-            />
+            <img className="w-10 h-10 rounded-full" src={logo} alt="Logo" />
           </div>
           <div>
             <Link to="/" className="text-xl font-bold">
@@ -83,12 +106,17 @@ const Navbar = () => {
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
-            <li>
-              <Link to="/register">Sign Up</Link>
-            </li>
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
+
+            {/* conditional rendering for user authentication */}
+            {user ? (
+              <li >
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
