@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../hook/useAuth";
 import useAxiosPublic from "../hook/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -15,49 +16,49 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-  console.log(data);
+    console.log(data);
 
-  createUser(data.email, data.password)
-    .then((result) => {
-      console.log(result.user);
+    createUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
 
-      // update user profile
-      updateUserProfile(data.name, data.photoUrl)
-        .then(() => {
-          console.log("Profile updated");
+        // update user profile
+        updateUserProfile(data.name, data.photoUrl)
+          .then(() => {
+            console.log("Profile updated");
 
-          // save user to database
-          const saveUser = {
-            name: data.name,
-            email: data.email,
-            photoUrl: data.photoUrl,
-            role: data.role,
-          };
+            // save user to database
+            const saveUser = {
+              name: data.name,
+              email: data.email,
+              photoUrl: data.photoUrl,
+              role: data.role,
+            };
 
-          axiosPublic.post("/users", saveUser)
-            .then((response) => {
-              console.log(response.data);
-              // Example: success message
-              Swal.fire({
-                icon: "success",
-                title: "Registration Successful!",
-                showConfirmButton: false,
-                timer: 2000,
+            axiosPublic
+              .post("/users", saveUser)
+              .then((response) => {
+                console.log(response.data);
+                // Example: success message
+                Swal.fire({
+                  icon: "success",
+                  title: "Registration Successful!",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+              })
+              .catch((error) => {
+                console.log(error);
               });
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
@@ -170,6 +171,19 @@ const Register = () => {
             Register
           </button>
         </form>
+        {/* Divider */}
+        <div className="flex items-center my-6">
+          <hr className="flex-grow border-gray-300" />
+          <span className="px-2 text-gray-500">OR</span>
+          <hr className="flex-grow border-gray-300" />
+        </div>
+        {/* Signup redirect */}
+        <p className="text-center text-gray-600 mt-6">
+          have an account?{" "}
+          <Link to="/login" className="text-blue-600 font-bold hover:underline">
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );

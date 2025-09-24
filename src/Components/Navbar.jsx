@@ -88,7 +88,7 @@ const Navbar = () => {
           <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               <img
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                 alt="User Avatar"
               />
             </div>

@@ -1,15 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../hook/useAuth";
 
 const Login = () => {
+
+  const {signInUser} = useAuth();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
-    // Firebase login code আসবে এখানে
-  };
 
+    signInUser(email, password)
+      .then((result) => {
+        console.log("User signed in:", result.user);
+      })
+      .catch((error) => {
+        console.error("Error signing in:", error);
+      });
+  };
 
 
   return (
@@ -55,13 +64,6 @@ const Login = () => {
           <span className="px-2 text-gray-500">OR</span>
           <hr className="flex-grow border-gray-300" />
         </div>
-
-        {/* Social Login (Reusable Component) */}
-        {/* <SocialLogin
-          onGoogleLogin={handleGoogleLogin}
-          onGithubLogin={handleGithubLogin}
-        /> */}
-
         {/* Signup redirect */}
         <p className="text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
