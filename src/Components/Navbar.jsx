@@ -86,7 +86,7 @@ const Navbar = () => {
         {/* User Avatar Dropdown */}
         <div className="dropdown dropdown-end ml-3">
           <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-10 border rounded-full">
               <img
                 src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                 alt="User Avatar"

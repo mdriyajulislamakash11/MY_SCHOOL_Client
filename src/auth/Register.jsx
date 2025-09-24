@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import useAuth from "../hook/useAuth";
 import useAxiosPublic from "../hook/useAxiosPublic";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
 
   const {
     register,
@@ -40,6 +44,8 @@ const Register = () => {
               .then((response) => {
                 console.log(response.data);
                 // Example: success message
+                toast.success("Welcome Your Registration Successfully");
+                navigate(from, { replace: true });
                 Swal.fire({
                   icon: "success",
                   title: "Registration Successful!",

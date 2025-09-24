@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
-
-  const {signInUser} = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
+  const { signInUser } = useAuth();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -14,12 +17,13 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         console.log("User signed in:", result.user);
+        toast.success("Welcome Your Login Successfully");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("Error signing in:", error);
       });
   };
-
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
@@ -67,7 +71,10 @@ const Login = () => {
         {/* Signup redirect */}
         <p className="text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
-          <Link to="/signup" className="text-blue-600 font-bold hover:underline">
+          <Link
+            to="/signup"
+            className="text-blue-600 font-bold hover:underline"
+          >
             Sign Up
           </Link>
         </p>
