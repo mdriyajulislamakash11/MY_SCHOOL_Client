@@ -84,7 +84,8 @@ const Navbar = () => {
         </div>
 
         {/* User Avatar Dropdown */}
-        <div className="dropdown dropdown-end ml-3">
+        {
+          user ? (<div className="dropdown dropdown-end ml-3">
           <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 border rounded-full">
               <img
@@ -119,6 +120,12 @@ const Navbar = () => {
             )}
           </ul>
         </div>
+      ) : (
+        <button className="btn btn-outline btn-primary">
+          <Link to="/login">Login</Link>
+        </button>
+      )}
+
       </div>
     </div>
   );

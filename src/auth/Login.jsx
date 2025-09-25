@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import toast from "react-hot-toast";
+import SocialLogin from "../Components/SocialLogin";
 
 const Login = () => {
   const location = useLocation();
@@ -78,6 +79,9 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
+
+        {/* Social Login Component */}
+        <SocialLogin />
       </div>
     </div>
   );

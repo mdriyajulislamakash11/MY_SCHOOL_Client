@@ -5,6 +5,7 @@ import useAxiosPublic from "../hook/useAxiosPublic";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import SocialLogin from "../Components/SocialLogin";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -190,6 +191,8 @@ const Register = () => {
             Sign In
           </Link>
         </p>
+
+        <SocialLogin />
       </div>
     </div>
   );
