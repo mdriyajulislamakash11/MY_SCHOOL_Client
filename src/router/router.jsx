@@ -16,6 +16,11 @@ import PrivateRoute from "./PrivateRoute";
 import TeacherProfile from "../pages/Dashnoard/Teacher/TeacherProfile";
 import UploadMaterials from "../pages/Dashnoard/Teacher/UploadMaterials";
 import ViewAllMaterials from "../pages/Dashnoard/Teacher/ViewAllMaterials";
+import StudySession from "../pages/Dashnoard/Teacher/ViewAllStudySession";
+import CreateStudySession from "../pages/Dashnoard/Teacher/CreateStudySession";
+import ViewAllStudySession from "../pages/Dashnoard/Teacher/ViewAllStudySession";
+import StudentRoute from "./StudentRoute";
+import TeacherRoute from "./TeacherRoute";
 
 const router = createBrowserRouter([
   {
@@ -49,45 +54,45 @@ const router = createBrowserRouter([
       // Student
       {
         path: "student",
-        element: <StudentProfile />,
+        element:<StudentRoute><StudentProfile /></StudentRoute>,
       },
       {
         path: "booked-sessions",
-        element: <BookedSession />,
+        element: <StudentRoute><BookedSession /></StudentRoute>,
       },
       {
         path: "create-note",
-        element: <CreateNote />,
+        element: <StudentRoute><CreateNote /></StudentRoute>,
       },
       {
         path: "manage-notes",
-        element: <ManageNotes />,
+        element: <StudentRoute><ManageNotes /></StudentRoute>,
       },
       {
         path: "study-materials",
-        element: <StudyMaterials />,
+        element: <StudentRoute><StudyMaterials /></StudentRoute>,
       },
 
       // Teacher routes
       {
         path: "teacher", // /dashboard/teacher
-        element: <TeacherProfile />
+        element:<TeacherRoute><TeacherProfile /></TeacherRoute>,  
       },
       {
-        path: "teacher/create-session",
-        element: <CreateSession />,
+        path: "create-session",
+        element: <TeacherRoute><CreateStudySession /></TeacherRoute>,
       },
       {
-        path: "teacher/my-sessions",
-        element: <ViewAllSessions />,
+        path: "my-sessions",
+        element: <TeacherRoute><ViewAllStudySession /></TeacherRoute>,
       },
       {
-        path: "teacher/upload-materials",
-        element: <UploadMaterials />,
+        path: "upload-materials",
+        element: <TeacherRoute><UploadMaterials /></TeacherRoute>,
       },
       {
-        path: "teacher/my-materials",
-        element: <ViewAllMaterials />,
+        path: "my-materials",
+        element: <TeacherRoute><ViewAllMaterials /></TeacherRoute>,
       },
 
       // Admin

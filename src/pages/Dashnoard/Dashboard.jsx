@@ -7,8 +7,6 @@ const Dashboard = () => {
   const [role, isLoading] = useRole();
   const { user } = useAuth();
 
-  console.log("User role:", role);
-
   // Loading handle
   if (isLoading) {
     return (
@@ -18,31 +16,43 @@ const Dashboard = () => {
     );
   }
 
+  // Active link style
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "bg-primary  text-white px-3 py-2 rounded-lg font-semibold"
+      : "px-3 py-2 rounded-lg hover:bg-base-300";
+
   return (
     <div className="flex min-h-screen">
       {/* -------- Left Sidebar -------- */}
-      <div className="w-72 bg-base-200 p-4">
+      <aside className="w-72 bg-gray-200 p-4">
         <h2 className="text-xl font-bold mb-6">Dashboard</h2>
-        <ul className="menu space-y-2">
+        <ul className="menu space-y-2 w-full">
           {/* Student */}
           {role === "student" && (
             <>
               <li>
-                <NavLink to="/dashboard/student">Student Profile</NavLink>
+                <NavLink to="/dashboard/student" className={navLinkClass}>
+                  Student Profile
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/booked-sessions">
+                <NavLink to="/dashboard/booked-sessions" className={navLinkClass}>
                   View Booked Sessions
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/create-note">Create Note</NavLink>
+                <NavLink to="/dashboard/create-note" className={navLinkClass}>
+                  Create Note
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manage-notes">Manage Notes</NavLink>
+                <NavLink to="/dashboard/manage-notes" className={navLinkClass}>
+                  Manage Notes
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/study-materials">
+                <NavLink to="/dashboard/study-materials" className={navLinkClass}>
                   View Study Materials
                 </NavLink>
               </li>
@@ -53,26 +63,58 @@ const Dashboard = () => {
           {role === "teacher" && (
             <>
               <li>
-                <NavLink to="/dashboard/teacher">Teacher Dashboard</NavLink>
+                <NavLink to="/dashboard/teacher" className={navLinkClass}>
+                  Tutor Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/create-session" className={navLinkClass}>
+                  Create Study Session
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-sessions" className={navLinkClass}>
+                  View All Study Sessions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/upload-materials" className={navLinkClass}>
+                  Upload Materials
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-materials" className={navLinkClass}>
+                  View All Materials
+                </NavLink>
               </li>
             </>
           )}
 
           {/* Admin */}
           {role === "admin" && (
-            <>
-              <li>
-                <NavLink to="/dashboard/admin">Admin Dashboard</NavLink>
-              </li>
-            </>
+            <li>
+              <NavLink to="/dashboard/admin" className={navLinkClass}>
+                Admin Dashboard
+              </NavLink>
+            </li>
           )}
         </ul>
-      </div>
+
+        <div className="divider"></div>
+
+        <ul>
+          <li>
+            <NavLink to="/" className={navLinkClass}>
+              Home
+            </NavLink>
+          </li>
+        </ul>
+      </aside>
 
       {/* -------- Right Content -------- */}
-      <div className="flex-1 bg-base-100 p-6">
+      <main className="flex-1 bg-base-100 p-6">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };
