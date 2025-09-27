@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const { user, logout } = useAuth();
 
-    const handleLogout = () => {
+  const handleLogout = () => {
     logout()
       .then(() => {
         Swal.fire({
@@ -28,8 +28,6 @@ const Navbar = () => {
       });
   };
 
-
-
   return (
     <div className="navbar bg-base-100 px-4 shadow-md">
       {/* Logo */}
@@ -47,7 +45,7 @@ const Navbar = () => {
       </div>
 
       {/* Right Side Icons */}
-      <div className="flex-none">
+      <div className="flex-none flex items-center">
         {/* Cart Dropdown */}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} className="btn btn-ghost btn-circle">
@@ -84,48 +82,41 @@ const Navbar = () => {
         </div>
 
         {/* User Avatar Dropdown */}
-        {
-          user ? (<div className="dropdown dropdown-end ml-3">
-          <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 border rounded-full">
-              <img
-                src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
-                alt="User Avatar"
-              />
+        {user ? (
+          <div className="dropdown dropdown-end ml-3">
+            <div tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 border rounded-full">
+                <img
+                  src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                  alt="User Avatar"
+                />
+              </div>
             </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <Link to="/profile" className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-
-            {/* conditional rendering for user authentication */}
-            {user ? (
-              <li >
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <Link to="/profile" className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
                 <button onClick={handleLogout}>Logout</button>
               </li>
-            ) : (
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            )}
-          </ul>
-        </div>
-      ) : (
-        <button className="btn btn-outline btn-primary">
-          <Link to="/login">Login</Link>
-        </button>
-      )}
-
+            </ul>
+          </div>
+        ) : (
+          <div className="ml-3">
+            <Link to="/login" className="btn btn-outline btn-primary">
+              Login
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
