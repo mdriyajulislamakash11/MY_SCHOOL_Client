@@ -1,36 +1,77 @@
 import React from "react";
 import useRole from "../../hook/useRole";
+import useAuth from "../../hook/useAuth";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
-  const [role] = useRole();
+  const [role, isLoading] = useRole();
+  const { user } = useAuth();
+
+  console.log("User role:", role);
+
+  // Loading handle
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
-    <div className="drawer lg:drawer-open">
-      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center justify-center">
-        {/* Page content here */}
-        <label
-          htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          Open drawer
-        </label>
-      </div>
-      <div className="drawer-side">
-        <label
-          htmlFor="my-drawer-2"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-          {/* Sidebar content here */}
-          <li>
-            <a>Sidebar Item 1</a>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
+    <div className="flex min-h-screen">
+      {/* -------- Left Sidebar -------- */}
+      <div className="w-72 bg-base-200 p-4">
+        <h2 className="text-xl font-bold mb-6">Dashboard</h2>
+        <ul className="menu space-y-2">
+          {/* Student */}
+          {role === "student" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/student">Student Profile</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/booked-sessions">
+                  View Booked Sessions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/create-note">Create Note</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-notes">Manage Notes</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/study-materials">
+                  View Study Materials
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {/* Teacher */}
+          {role === "teacher" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/teacher">Teacher Dashboard</NavLink>
+              </li>
+            </>
+          )}
+
+          {/* Admin */}
+          {role === "admin" && (
+            <>
+              <li>
+                <NavLink to="/dashboard/admin">Admin Dashboard</NavLink>
+              </li>
+            </>
+          )}
         </ul>
+      </div>
+
+      {/* -------- Right Content -------- */}
+      <div className="flex-1 bg-base-100 p-6">
+        <Outlet />
       </div>
     </div>
   );
