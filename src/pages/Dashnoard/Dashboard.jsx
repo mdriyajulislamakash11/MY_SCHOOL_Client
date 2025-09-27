@@ -37,7 +37,10 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/booked-sessions" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/booked-sessions"
+                  className={navLinkClass}
+                >
                   View Booked Sessions
                 </NavLink>
               </li>
@@ -52,7 +55,10 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/study-materials" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/study-materials"
+                  className={navLinkClass}
+                >
                   View Study Materials
                 </NavLink>
               </li>
@@ -68,7 +74,10 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/create-session" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/create-session"
+                  className={navLinkClass}
+                >
                   Create Study Session
                 </NavLink>
               </li>
@@ -78,7 +87,10 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/upload-materials" className={navLinkClass}>
+                <NavLink
+                  to="/dashboard/upload-materials"
+                  className={navLinkClass}
+                >
                   Upload Materials
                 </NavLink>
               </li>
@@ -92,11 +104,34 @@ const Dashboard = () => {
 
           {/* Admin */}
           {role === "admin" && (
-            <li>
-              <NavLink to="/dashboard/admin" className={navLinkClass}>
-                Admin Dashboard
-              </NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink to="/dashboard/admin" className={navLinkClass}>
+                  Admin Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/all-users" className={navLinkClass}>
+                  View All Users
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/all-sessions"
+                  className={navLinkClass}
+                >
+                  View All Study Sessions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/all-materials"
+                  className={navLinkClass}
+                >
+                  View All Materials
+                </NavLink>
+              </li>
+            </>
           )}
         </ul>
 

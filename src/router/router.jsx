@@ -16,11 +16,15 @@ import PrivateRoute from "./PrivateRoute";
 import TeacherProfile from "../pages/Dashnoard/Teacher/TeacherProfile";
 import UploadMaterials from "../pages/Dashnoard/Teacher/UploadMaterials";
 import ViewAllMaterials from "../pages/Dashnoard/Teacher/ViewAllMaterials";
-import StudySession from "../pages/Dashnoard/Teacher/ViewAllStudySession";
 import CreateStudySession from "../pages/Dashnoard/Teacher/CreateStudySession";
 import ViewAllStudySession from "../pages/Dashnoard/Teacher/ViewAllStudySession";
 import StudentRoute from "./StudentRoute";
 import TeacherRoute from "./TeacherRoute";
+import AdminProfile from "../pages/Dashnoard/Admin/AdminProfile";
+import AllUsers from "../pages/Dashnoard/Admin/AllUsers";
+import AllSessions from "../pages/Dashnoard/Admin/AllSessions";
+import AllMaterials from "../pages/Dashnoard/Admin/AllMaterials";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -96,10 +100,24 @@ const router = createBrowserRouter([
       },
 
       // Admin
-      {
-        path: "admin", // 🟢 fixed (আগে "/dashboard/admin" ছিল)
-        element: <div>Admin Dashboard</div>,
-      },
+{
+  path: "admin",
+  element: <AdminRoute><AdminProfile /></AdminRoute>, // default admin dashboard page
+},
+{
+  path: "all-users",
+  element: <AdminRoute><AllUsers /></AdminRoute>, // View all users + role update
+},
+{
+  path: "all-sessions",
+  element: <AdminRoute><AllSessions /></AdminRoute>, // Approve/Reject/Update/Delete session
+},
+{
+  path: "all-materials",
+  element: <AdminRoute><AllMaterials /></AdminRoute>, // View & remove materials
+},
+
+
     ],
   },
 ]);
