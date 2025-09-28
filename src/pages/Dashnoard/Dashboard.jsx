@@ -59,39 +59,110 @@ const Dashboard = () => {
             className="w-16 h-16 rounded-full border"
           />
           <h2 className="mt-2 text-lg font-semibold">{user?.displayName}</h2>
-          <span className="text-sm text-gray-600 bg-lime-400 px-2 py-1 rounded-full mt-1">
-            {role}
-          </span>
+          <div className="flex items-center mt-1">
+            <span className="font-bold ">You Are: </span>
+            <span className=" font-bold text-blue-500 px-2 py-1 rounded-full mt-1">
+              {role}
+            </span>
+          </div>
         </div>
 
         {/* Role-based Menu */}
         <ul className="menu space-y-2 w-full">
           {role === "student" && (
             <>
-              <li><NavLink to="/dashboard/student" className={navLinkClass}>Student Profile</NavLink></li>
-              <li><NavLink to="/dashboard/booked-sessions" className={navLinkClass}>Booked Sessions</NavLink></li>
-              <li><NavLink to="/dashboard/create-note" className={navLinkClass}>Create Note</NavLink></li>
-              <li><NavLink to="/dashboard/manage-notes" className={navLinkClass}>Manage Notes</NavLink></li>
-              <li><NavLink to="/dashboard/study-materials" className={navLinkClass}>Study Materials</NavLink></li>
+              <li>
+                <NavLink to="/dashboard/student" className={navLinkClass}>
+                  Student Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/booked-sessions"
+                  className={navLinkClass}
+                >
+                  Booked Sessions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/create-note" className={navLinkClass}>
+                  Create Note
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-notes" className={navLinkClass}>
+                  Manage Notes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/study-materials"
+                  className={navLinkClass}
+                >
+                  Study Materials
+                </NavLink>
+              </li>
             </>
           )}
 
           {role === "teacher" && (
             <>
-              <li><NavLink to="/dashboard/teacher" className={navLinkClass}>Tutor Profile</NavLink></li>
-              <li><NavLink to="/dashboard/create-session" className={navLinkClass}>Create Session</NavLink></li>
-              <li><NavLink to="/dashboard/my-sessions" className={navLinkClass}>All Sessions</NavLink></li>
-              <li><NavLink to="/dashboard/upload-materials" className={navLinkClass}>Upload Materials</NavLink></li>
-              <li><NavLink to="/dashboard/my-materials" className={navLinkClass}>My Materials</NavLink></li>
+              <li>
+                <NavLink to="/dashboard/teacher" className={navLinkClass}>
+                  Tutor Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/create-session"
+                  className={navLinkClass}
+                >
+                  Create Session
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-sessions" className={navLinkClass}>
+                  All Sessions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/upload-materials"
+                  className={navLinkClass}
+                >
+                  Upload Materials
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-materials" className={navLinkClass}>
+                  My Materials
+                </NavLink>
+              </li>
             </>
           )}
 
           {role === "admin" && (
             <>
-              <li><NavLink to="/dashboard/admin" className={navLinkClass}>Admin Profile</NavLink></li>
-              <li><NavLink to="/dashboard/all-users" className={navLinkClass}>All Users</NavLink></li>
-              <li><NavLink to="/dashboard/all-sessions" className={navLinkClass}>All Sessions</NavLink></li>
-              <li><NavLink to="/dashboard/all-materials" className={navLinkClass}>All Materials</NavLink></li>
+              <li>
+                <NavLink to="/dashboard/admin" className={navLinkClass}>
+                  Admin Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/all-users" className={navLinkClass}>
+                  All Users
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/all-sessions" className={navLinkClass}>
+                  All Sessions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/all-materials" className={navLinkClass}>
+                  All Materials
+                </NavLink>
+              </li>
             </>
           )}
         </ul>
@@ -101,7 +172,11 @@ const Dashboard = () => {
 
         {/* Common Links */}
         <ul className="space-y-2">
-          <li><NavLink to="/" className={navLinkClass}>🏠 Home</NavLink></li>
+          <li>
+            <NavLink to="/" className={navLinkClass}>
+              🏠 Home
+            </NavLink>
+          </li>
           <li>
             <button
               onClick={handleLogout}
