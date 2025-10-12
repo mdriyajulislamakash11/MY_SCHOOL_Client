@@ -25,6 +25,7 @@ import AllUsers from "../pages/Dashnoard/Admin/AllUsers";
 import AllSessions from "../pages/Dashnoard/Admin/AllSessions";
 import AllMaterials from "../pages/Dashnoard/Admin/AllMaterials";
 import AdminRoute from "./AdminRoute";
+import SessionDetails from "../Components/SessionDetails";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Register />,
+      },
+      {
+        path: "/sessions/:id",
+        element: <SessionDetails />,
       },
       {
         path: "/login",

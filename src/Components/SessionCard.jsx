@@ -2,9 +2,13 @@ import React from "react";
 import SectionTitle from "./SectionTitle";
 import useAxiosPublic from "../hook/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import useAuth from "../hook/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const SessionCard = () => {
   const axiosPublic = useAxiosPublic();
+  const {user} = useAuth();
+  const navigate = useNavigate();
 
   const { data: sessions = [] } = useQuery({
     queryKey: ["sessions"],
@@ -30,6 +34,16 @@ const SessionCard = () => {
       state: isOngoing ? "Ongoing" : "Closed",
     };
   });
+
+  // Handle Read More button click
+  const handleReadMore = (sessionId) => {
+    if (!user) {
+
+      navigate("/login");
+    } else {
+      navigate(`/sessions/${sessionId}`);
+    }
+  };
 
   return (
     <div className="my-12 px-4 md:px-8">
@@ -65,7 +79,10 @@ const SessionCard = () => {
                 {session.state}
               </span>
 
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-medium transition">
+              <button
+                onClick={() => handleReadMore(session._id)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-medium transition"
+              >
                 Read More
               </button>
             </div>
