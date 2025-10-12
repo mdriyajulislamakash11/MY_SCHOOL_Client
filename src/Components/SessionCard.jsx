@@ -32,34 +32,40 @@ const SessionCard = () => {
   });
 
   return (
-    <div className="my-10">
+    <div className="my-12 px-4 md:px-8">
       <SectionTitle
         subtitle="Session Subtitle"
-        title="Study Session"
-        description="Session Description"
+        title="Study Sessions"
+        description="Browse all approved study sessions and join ongoing ones."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {updatedSessions.slice(0, 6).map((session) => (
           <div
             key={session._id}
-            className="bg-white rounded-2xl shadow-lg p-5 hover:shadow-2xl transition"
+            className="bg-white rounded-3xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between h-full"
           >
-            <h2 className="text-xl font-bold mb-2">{session.title}</h2>
-            <p className="text-gray-600 mb-4">{session.description}</p>
+            <div>
+              <h2 className="text-2xl font-semibold mb-3 text-gray-800">
+                {session.title}
+              </h2>
+              <p className="text-gray-600 mb-4 line-clamp-3">
+                {session.description}
+              </p>
+            </div>
 
-            <div className="flex justify-between items-center">
-              <button
-                className={`px-4 py-2 rounded font-medium ${
+            <div className="flex justify-between items-center mt-4">
+              <span
+                className={`px-4 py-2 rounded-full font-medium text-sm ${
                   session.state === "Ongoing"
-                    ? "bg-green-500 text-white"
-                    : "bg-red-500 text-white"
+                    ? "bg-green-100 text-green-800"
+                    : "bg-red-100 text-red-800"
                 }`}
               >
                 {session.state}
-              </button>
+              </span>
 
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-medium transition">
                 Read More
               </button>
             </div>
