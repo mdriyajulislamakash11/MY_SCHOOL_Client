@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../hook/useAxiosSecure";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  FaCalendarAlt,
-  FaClock,
-  FaDollarSign,
-  FaUserGraduate,
-} from "react-icons/fa";
+import { FaCalendarAlt, FaClock, FaDollarSign, FaUserGraduate } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hook/useAxiosSecure";
+import useAuth from "../hook/useAuth";
 
 const SessionDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [session, setSession] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [role, setRole] = useState(null);
+  const [isRegistrationClosed, setIsRegistrationClosed] = useState(false);
 
-  console.log(session);
-
+  // ✅ Fetch data
   useEffect(() => {
     const fetchSession = async () => {
       try {
         const res = await axiosSecure.get(`/sessions/${id}`);
         setSession(res.data);
-      } catch (error) {
-        console.error("Failed to fetch session details:", error);
+        const now = new Date();
+        const regEnd = new Date(res.data.regEndDate);
+        if (now > regEnd) setIsRegistrationClosed(true);
+      } catch (err) {
+        console.error(err);
       }
     };
 
@@ -32,50 +34,71 @@ const SessionDetails = () => {
       try {
         const res = await axiosSecure.get(`/reviews?sessionId=${id}`);
         setReviews(res.data);
-      } catch (error) {
-        console.error("Failed to fetch reviews:", error);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    const fetchUserRole = async () => {
+      try {
+        if (user?.email) {
+          const res = await axiosSecure.get(`/users/role/${user.email}`);
+          setRole(res.data.role);
+        }
+      } catch (err) {
+        console.error(err);
       }
     };
 
     fetchSession();
     fetchReviews();
-  }, [id, axiosSecure]);
+    fetchUserRole();
+  }, [id, axiosSecure, user]);
+
+  // redirect if not logged in
+  useEffect(() => {
+    if (!user) navigate("/login");
+  }, [user, navigate]);
 
   if (!session)
-    return (
-      <p className="text-center mt-10 text-lg font-medium">
-        Loading session details...
-      </p>
-    );
+    return <p className="text-center mt-10 text-lg font-medium">Loading session details...</p>;
 
   const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        i <= rating ? (
-          <AiFillStar key={i} className="text-yellow-400 inline" />
-        ) : (
-          <AiOutlineStar key={i} className="text-gray-300 inline" />
-        )
-      );
-    }
-    return stars;
+    return Array.from({ length: 5 }, (_, i) =>
+      i < rating ? (
+        <AiFillStar key={i} className="text-yellow-400 inline" />
+      ) : (
+        <AiOutlineStar key={i} className="text-gray-300 inline" />
+      )
+    );
   };
+
+  // ✅ Handle Free Booking
+  const handleBookFree = async () => {
+    try {
+      const res = await axiosSecure.post("/booked-sessions", {
+        sessionId: session._id,
+        sessionTitle: session.title,
+        userEmail: user.email,
+        amount: session.amount,
+        date: new Date(),
+      });
+      if (res.data.insertedId) {
+        Swal.fire("Success!", "Session booked successfully!", "success");
+        navigate("/dashboard/booked-sessions");
+      }
+    } catch (err) {
+      Swal.fire("Error!", "Booking failed!", "error");
+    }
+  };
+
+  // ✅ Button disable condition ঠিক করা
+  const isButtonDisabled =
+    !user || role === "admin" || role === "teacher" || isRegistrationClosed;
 
   return (
     <div className="max-w-6xl mx-auto my-12 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-3xl shadow-2xl">
-      {/* image */}
-      {/* <div className="mb-10">
-        <img
-          src={
-            session.image || "https://via.placeholder.com/800x400?text=No+Image"
-          }
-          alt={session.title}
-          className="w-full h-auto rounded-2xl shadow-lg"
-        />
-      </div> */}
-
-      {/* Session Hero */}
+      {/* Title */}
       <div className="text-center mb-8">
         <h1 className="text-5xl font-extrabold text-indigo-700 mb-3">
           {session.title}
@@ -116,7 +139,7 @@ const SessionDetails = () => {
         </div>
       </div>
 
-      {/* Session Dates */}
+      {/* Dates */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div className="bg-white p-5 rounded-2xl shadow-md flex items-center gap-3">
           <FaCalendarAlt className="text-indigo-500 text-2xl" />
@@ -171,23 +194,33 @@ const SessionDetails = () => {
         )}
       </div>
 
-      {/* Book / Payment Button */}
-      {session.status === "approved" && session.amount !== undefined && (
-        <div className="flex justify-center">
-          <button
-            onClick={() => {
-              if (session.amount > 0) {
-                navigate(`/payment/${session._id}`);
-              } else {
-                navigate(`/book-session/${session._id}`);
-              }
-            }}
-            className={`px-10 py-4 font-bold text-white rounded-2xl shadow-xl transition-transform transform hover:scale-105 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-purple-500 hover:to-indigo-500`}
-          >
-            {session.fee > 0 ? `Pay $${session.fee} & Book` : "Book Now"}
-          </button>
-        </div>
-      )}
+      {/* ✅ Book / Payment Button */}
+      <div className="flex justify-center">
+        <button
+          onClick={() => {
+            if (isButtonDisabled) return;
+            if (session.amount > 0) {
+              navigate(`/payment/${session._id}`);
+            } else {
+              handleBookFree();
+            }
+          }}
+          disabled={isButtonDisabled}
+          className={`px-10 py-4 font-bold text-white rounded-2xl shadow-xl transition-transform transform hover:scale-105 ${
+            isButtonDisabled
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-purple-500 hover:to-indigo-500"
+          }`}
+        >
+          {isRegistrationClosed
+            ? "Registration Closed"
+            : role === "admin" || role === "teacher"
+            ? "Only Students Can Book"
+            : session.amount > 0
+            ? `Pay $${session.amount} & Book`
+            : "Book Now"}
+        </button>
+      </div>
     </div>
   );
 };

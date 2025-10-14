@@ -26,6 +26,7 @@ import AllSessions from "../pages/Dashnoard/Admin/AllSessions";
 import AllMaterials from "../pages/Dashnoard/Admin/AllMaterials";
 import AdminRoute from "./AdminRoute";
 import SessionDetails from "../Components/SessionDetails";
+import Payments from "../pages/Dashnoard/Payments/Payments";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/sessions/:id",
-        element: <SessionDetails />,
+        element: <PrivateRoute><SessionDetails /></PrivateRoute>,
+      },
+      {
+        path: "/payment/:id",
+        element: <PrivateRoute><Payments /></PrivateRoute>,
       },
       {
         path: "/login",

@@ -3,12 +3,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
+
 const axiosSecure = axios.create({
     baseURL: 'http://localhost:5000'
 })
 
 const useAxiosSecure = () => {
-    const { logOut } = useAuth()
+    const { logout } = useAuth()
     const navigate = useNavigate()
     // send token in server site
     axiosSecure.interceptors.request.use(function (config) {
@@ -31,7 +32,7 @@ const useAxiosSecure = () => {
         // console.log(status)
         
         if (status === 401 || status === 403) {
-            await logOut()
+            await logout()
             navigate('/signIn')
         }
         // console.log("status error INTERCEPTOR", status)
