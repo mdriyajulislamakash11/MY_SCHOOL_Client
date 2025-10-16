@@ -3,10 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import useAuth from "../../../hook/useAuth";
 import useAxiosPublic from "../../../hook/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const BookedSession = () => {
   const axiosPublic = useAxiosPublic();
   const { user, loading } = useAuth();
+  const navigate = useNavigate();
+
+  const handleViewDetails = (sessionId) => {
+    navigate(`/dashboard/view-details/${sessionId}`);
+  }
 
   const {
     data: bookedSessions = [],
@@ -61,9 +67,7 @@ const BookedSession = () => {
               </p>
 
               <button
-                onClick={() =>
-                  console.log("View details for:", session.sessionId)
-                }
+                onClick={() => handleViewDetails(session._id)} 
                 className="btn btn-outline btn-sm w-full"
               >
                 View Details

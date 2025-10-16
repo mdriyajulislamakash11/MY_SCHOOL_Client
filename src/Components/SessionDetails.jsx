@@ -16,6 +16,8 @@ const SessionDetails = () => {
   const [role, setRole] = useState(null);
   const [isRegistrationClosed, setIsRegistrationClosed] = useState(false);
 
+  console.log(reviews);
+
   // ✅ Fetch data
   useEffect(() => {
     const fetchSession = async () => {
@@ -32,7 +34,7 @@ const SessionDetails = () => {
 
     const fetchReviews = async () => {
       try {
-        const res = await axiosSecure.get(`/reviews?sessionId=${id}`);
+        const res = await axiosSecure.get(`/reviews`);
         setReviews(res.data);
       } catch (err) {
         console.error(err);
@@ -179,13 +181,30 @@ const SessionDetails = () => {
         </h3>
         {reviews.length > 0 ? (
           <div className="space-y-4">
-            {reviews.map((rev, idx) => (
-              <div key={idx} className="bg-white p-4 rounded-2xl shadow-md">
-                <div className="flex justify-between items-center mb-2">
-                  <p className="font-semibold">{rev.studentName}</p>
-                  <div>{renderStars(rev.rating)}</div>
+           {reviews.map((r, index) => (
+              <div key={index} className="bg-white p-4 rounded-2xl shadow-md flex gap-4">
+                {/* Student Photo */}
+                {r.studentPhoto && (
+                  <img
+                    src={r.studentPhoto}
+                    alt={r.studentName}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                )}
+
+                <div className="flex-1">
+                  <div className="flex justify-between items-center mb-1">
+                    <div>
+                      <p className="font-semibold">{r.studentName}</p>
+                      <p className="text-sm text-gray-500">{r.studentEmail}</p>
+                    </div>
+                    <div>{renderStars(r.rating)}</div>
+                  </div>
+                  <p className="text-gray-700">{r.review}</p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    {new Date(r.date).toLocaleString()}
+                  </p>
                 </div>
-                <p className="text-gray-600">{rev.comment}</p>
               </div>
             ))}
           </div>

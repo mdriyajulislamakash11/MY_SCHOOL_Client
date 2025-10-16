@@ -27,6 +27,7 @@ import AllMaterials from "../pages/Dashnoard/Admin/AllMaterials";
 import AdminRoute from "./AdminRoute";
 import SessionDetails from "../Components/SessionDetails";
 import Payments from "../pages/Dashnoard/Payments/Payments";
+import ViewDetails from "../pages/Dashnoard/Student/ViewDetails";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "create-note",
         element: <StudentRoute><CreateNote /></StudentRoute>,
+      },
+      {
+        path: "view-details/:id",
+        element: <StudentRoute><ViewDetails /></StudentRoute>,
       },
       {
         path: "manage-notes",
