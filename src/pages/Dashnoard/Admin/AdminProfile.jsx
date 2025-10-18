@@ -46,6 +46,8 @@ const AdminProfile = () => {
     },
   });
 
+  console.log("materials", materials);
+
   // Fetch all payments
   const { data: payments = [], isLoading: loadingPayments } = useQuery({
     queryKey: ["payments"],

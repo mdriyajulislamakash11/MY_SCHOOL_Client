@@ -51,7 +51,7 @@ const BookedSession = () => {
           {bookedSessions.map((session) => (
             <div
               key={session._id}
-              className="bg-white shadow-lg rounded-xl p-5 border border-gray-200 hover:shadow-2xl transition-all duration-300"
+              className=" rounded-xl p-5 hover:shadow-2xl transition-all duration-300"
             >
               <h3 className="font-bold text-lg mb-2">{session.sessionTitle}</h3>
               <p className="text-gray-600 mb-1">

@@ -78,7 +78,7 @@ const CreateNote = () => {
   if (isLoading) return <p className="text-center mt-10">Loading notes...</p>;
 
   return (
-    <div className="max-w-8xl mx-auto my-12 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-3xl shadow-2xl">
+    <div className="max-w-8xl mx-auto my-12 p-6  rounded-3xl ">
       <SectionTitle
         title="Create a New Note"
         subtitle="Write your thoughts and ideas here."
@@ -140,7 +140,7 @@ const CreateNote = () => {
             {notes.map((note, idx) => (
               <div
                 key={idx}
-                className="p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow"
+                className="p-4  rounded-2xl  hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center mb-3">
                   <img
