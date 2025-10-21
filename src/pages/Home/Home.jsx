@@ -6,6 +6,7 @@ import PartnerCompany from './PartnerCompany';
 import OurAchievements from './OurAchievments';
 import JoinAsTeacher from './JoinAsTeacher';
 import LearnersInfo from './LearnersInfo';
+import JoinCommunity from './JoinCommunity';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <OurAchievements />
             <LearnersInfo />
             <JoinAsTeacher />
+            <JoinCommunity />
         </div>
     );
 };
