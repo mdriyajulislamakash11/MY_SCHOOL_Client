@@ -30,12 +30,13 @@ const OurAchievements = () => {
   const {data: bookings} = useQuery({
     queryKey: ['bookingsCount'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/booked-sessions/all');
+      const res = await axiosPublic.get('/payments');
       return res.data;
     }
   });
 
-  console.log( );
+  
+  
 
   return (
     <section className="py-16">
@@ -53,24 +54,24 @@ const OurAchievements = () => {
             <div className="flex items-center gap-4 bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-all">
               <FaUsers className="text-blue-600 text-4xl" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">{users?.length}</h3>
-                <p className="text-gray-500 text-sm">Total Users</p>
+                <p className=" text-xl font-semibold">Total Users</p>
+                <h3 className="">{users?.length}</h3>
               </div>
             </div>
 
             <div className="flex items-center gap-4 bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-all">
               <FaChalkboardTeacher className="text-green-600 text-4xl" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">{sessions?.length}</h3>
-                <p className="text-gray-500 text-sm">All Sessions</p>
+                <p className=" text-xl font-semibold">All Classes</p>
+                <h3 className="">{sessions?.length}</h3>
               </div>
             </div>
 
             <div className="flex items-center gap-4 bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition-all">
               <FaBookOpen className="text-yellow-500 text-4xl" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">5</h3>
-                <p className="text-gray-500 text-sm">All Booked</p>
+                <p className=" text-xl font-semibold">All Enrollments</p>
+                <h3 className="">{bookings?.length}</h3>
               </div>
             </div>
           </div>
