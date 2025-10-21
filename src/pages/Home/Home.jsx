@@ -3,6 +3,7 @@ import Banner from './Banner';
 import SessionCard from '../../Components/SessionCard';
 import TutorSection from './TutorSection';
 import PartnerCompany from './PartnerCompany';
+import OurAchievements from './OurAchievments';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <PartnerCompany />
             <SessionCard />
             <TutorSection />
+            <OurAchievements />
         </div>
     );
 };
