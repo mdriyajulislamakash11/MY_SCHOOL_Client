@@ -5,6 +5,7 @@ import TutorSection from './TutorSection';
 import PartnerCompany from './PartnerCompany';
 import OurAchievements from './OurAchievments';
 import JoinAsTeacher from './JoinAsTeacher';
+import LearnersInfo from './LearnersInfo';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <SessionCard />
             <TutorSection />
             <OurAchievements />
+            <LearnersInfo />
             <JoinAsTeacher />
         </div>
     );
