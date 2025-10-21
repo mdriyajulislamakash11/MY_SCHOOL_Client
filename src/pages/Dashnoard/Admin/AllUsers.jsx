@@ -121,7 +121,7 @@ const AllUsers = () => {
                     }`}
                   >
                     <option value="student">Student</option>
-                    <option value="tutor">Tutor</option>
+                    <option value="teacher">Teacher</option>
                     <option value="admin">Admin</option>
                   </select>
                 </td>
