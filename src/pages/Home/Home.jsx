@@ -8,6 +8,7 @@ import JoinAsTeacher from './JoinAsTeacher';
 import LearnersInfo from './LearnersInfo';
 import JoinCommunity from './JoinCommunity';
 import LearningPaths from './LearningPaths';
+import WhayChoose from './WhayChoose';
 
 const Home = () => {
     return (
@@ -21,6 +22,7 @@ const Home = () => {
             <JoinAsTeacher />
             <LearningPaths />
             <JoinCommunity />
+            <WhayChoose />
         </div>
     );
 };
