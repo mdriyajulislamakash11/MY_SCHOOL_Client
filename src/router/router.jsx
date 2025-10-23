@@ -30,6 +30,7 @@ import Payments from "../pages/Dashnoard/Payments/Payments";
 import ViewDetails from "../pages/Dashnoard/Student/ViewDetails";
 import JoinTutorForm from "../Components/JoinTutorForm";
 import AllClasses from "../Components/AllClasses";
+import AboutStudy from "../pages/Home/AboutStudy";
 
 const router = createBrowserRouter([
   {
@@ -46,19 +47,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/sessions/:id",
-        element: <PrivateRoute><SessionDetails /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <SessionDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/about-study",
+        element: <AboutStudy />,
       },
       {
         path: "/all-classes",
-        element: <PrivateRoute><AllClasses /></PrivateRoute>,
+        element: <AllClasses />,
       },
       {
         path: "/payment/:id",
-        element: <PrivateRoute><Payments /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Payments />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/join-tutor",
-        element: <PrivateRoute><JoinTutorForm /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <JoinTutorForm />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -79,70 +96,128 @@ const router = createBrowserRouter([
       // Student
       {
         path: "student",
-        element:<StudentRoute><StudentProfile /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <StudentProfile />
+          </StudentRoute>
+        ),
       },
       {
         path: "booked-sessions",
-        element: <StudentRoute><BookedSession /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <BookedSession />
+          </StudentRoute>
+        ),
       },
       {
         path: "create-note",
-        element: <StudentRoute><CreateNote /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <CreateNote />
+          </StudentRoute>
+        ),
       },
       {
         path: "view-details/:id",
-        element: <StudentRoute><ViewDetails /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <ViewDetails />
+          </StudentRoute>
+        ),
       },
       {
         path: "manage-notes",
-        element: <StudentRoute><ManageNotes /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <ManageNotes />
+          </StudentRoute>
+        ),
       },
       {
         path: "study-materials",
-        element: <StudentRoute><StudyMaterials /></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <StudyMaterials />
+          </StudentRoute>
+        ),
       },
 
       // Teacher routes
       {
         path: "teacher", // /dashboard/teacher
-        element:<TeacherRoute><TeacherProfile /></TeacherRoute>,  
+        element: (
+          <TeacherRoute>
+            <TeacherProfile />
+          </TeacherRoute>
+        ),
       },
       {
         path: "create-session",
-        element: <TeacherRoute><CreateStudySession /></TeacherRoute>,
+        element: (
+          <TeacherRoute>
+            <CreateStudySession />
+          </TeacherRoute>
+        ),
       },
       {
         path: "my-sessions",
-        element: <TeacherRoute><ViewAllStudySession /></TeacherRoute>,
+        element: (
+          <TeacherRoute>
+            <ViewAllStudySession />
+          </TeacherRoute>
+        ),
       },
       {
         path: "upload-materials",
-        element: <TeacherRoute><UploadMaterials /></TeacherRoute>,
+        element: (
+          <TeacherRoute>
+            <UploadMaterials />
+          </TeacherRoute>
+        ),
       },
       {
         path: "my-materials",
-        element: <TeacherRoute><ViewAllMaterials /></TeacherRoute>,
+        element: (
+          <TeacherRoute>
+            <ViewAllMaterials />
+          </TeacherRoute>
+        ),
       },
 
       // Admin
-{
-  path: "admin",
-  element: <AdminRoute><AdminProfile /></AdminRoute>, // default admin dashboard page
-},
-{
-  path: "all-users",
-  element: <AdminRoute><AllUsers /></AdminRoute>, // View all users + role update
-},
-{
-  path: "all-sessions",
-  element: <AdminRoute><AllSessions /></AdminRoute>, // Approve/Reject/Update/Delete session
-},
-{
-  path: "all-materials",
-  element: <AdminRoute><AllMaterials /></AdminRoute>, // View & remove materials
-},
-
-
+      {
+        path: "admin",
+        element: (
+          <AdminRoute>
+            <AdminProfile />
+          </AdminRoute>
+        ), // default admin dashboard page
+      },
+      {
+        path: "all-users",
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ), // View all users + role update
+      },
+      {
+        path: "all-sessions",
+        element: (
+          <AdminRoute>
+            <AllSessions />
+          </AdminRoute>
+        ), // Approve/Reject/Update/Delete session
+      },
+      {
+        path: "all-materials",
+        element: (
+          <AdminRoute>
+            <AllMaterials />
+          </AdminRoute>
+        ), // View & remove materials
+      },
     ],
   },
 ]);

@@ -74,7 +74,7 @@ const Navbar = () => {
     </li>
     <li>
       <NavLink
-        to="/all-sessions"
+        to="/about-study"
         className={({ isActive }) =>
           isActive
             ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
