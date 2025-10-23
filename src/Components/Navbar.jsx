@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "/public/logo.jpg";
 import useAuth from "../hook/useAuth";
 import Swal from "sweetalert2";
@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100 px-4 shadow-md">
-      {/* Logo */}
+      {/* Logo (Left) */}
       <div className="flex-1">
         <div className="flex items-center gap-2">
           <div>
@@ -44,9 +44,52 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Right Side Icons */}
+      {/* Nav Links (Center) */}
+      
+<div className="flex-none absolute left-1/2 transform -translate-x-1/2">
+  <ul className="menu menu-horizontal p-0 gap-4">
+    <li>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+            : "hover:text-indigo-600 transition-colors duration-200 pb-1"
+        }
+      >
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/all-classes"
+        className={({ isActive }) =>
+          isActive
+            ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+            : "hover:text-indigo-600 transition-colors duration-200 pb-1"
+        }
+      >
+        All Classes
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/all-sessions"
+        className={({ isActive }) =>
+          isActive
+            ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+            : "hover:text-indigo-600 transition-colors duration-200 pb-1"
+        }
+      >
+        About to Study-buddy
+      </NavLink>
+    </li>
+  </ul>
+</div>
+
+      {/* Right Side (Cart + User) */}
       <div className="flex-none flex items-center">
-        {/* Cart Dropdown */}
+        {/* Cart */}
         <div className="dropdown dropdown-end">
           <div tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
@@ -81,7 +124,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* User Avatar Dropdown */}
+        {/* User Avatar */}
         {user ? (
           <div className="dropdown dropdown-end ml-3">
             <div tabIndex={0} className="btn btn-ghost btn-circle avatar">

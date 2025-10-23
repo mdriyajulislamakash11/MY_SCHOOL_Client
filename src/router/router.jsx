@@ -29,6 +29,7 @@ import SessionDetails from "../Components/SessionDetails";
 import Payments from "../pages/Dashnoard/Payments/Payments";
 import ViewDetails from "../pages/Dashnoard/Student/ViewDetails";
 import JoinTutorForm from "../Components/JoinTutorForm";
+import AllClasses from "../Components/AllClasses";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/sessions/:id",
         element: <PrivateRoute><SessionDetails /></PrivateRoute>,
+      },
+      {
+        path: "/all-classes",
+        element: <PrivateRoute><AllClasses /></PrivateRoute>,
       },
       {
         path: "/payment/:id",

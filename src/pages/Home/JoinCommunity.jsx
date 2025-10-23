@@ -1,7 +1,14 @@
 
+import { useNavigate } from "react-router-dom";
 import communityAnimation from "../../assets/Home-Page-image/homepage2.png"; 
 
 const JoinCommunity = () => {
+  const navigate = useNavigate();
+
+  const handleJoinCommunity = () => {
+    navigate("/all-classes");
+  }
+
   return (
     <section className="py-16 ">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
@@ -22,7 +29,7 @@ const JoinCommunity = () => {
           </ul>
 
           <div className="flex items-center gap-4">
-            <button  className="bg-green-700 text-white px-6 py-2 rounded-md transition">
+            <button onClick={handleJoinCommunity} className="bg-green-700 text-white px-6 py-2 rounded-md transition">
               Join Now
             </button>
             <button className="bg-white border border-indigo-200 text-indigo-700 px-5 py-2 rounded-md hover:shadow-sm transition">
