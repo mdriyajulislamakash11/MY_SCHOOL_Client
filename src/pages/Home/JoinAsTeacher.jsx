@@ -1,8 +1,15 @@
 import React from "react";
 import Lottie from "lottie-react";
 import teacherAnimation from "/public/joinTeacher.json"; // ✅ তোমার Lottie ফাইলের path ঠিক করে নিও
+import { useNavigate } from "react-router-dom";
 
 const JoinAsTeacher = () => {
+const navigate = useNavigate();
+
+  const handleJoinAsTutor = () => {
+    navigate("/join-tutor");
+  }
+
   return (
     <section className="py-16 ">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row  items-center justify-between gap-10">
@@ -22,7 +29,7 @@ const JoinAsTeacher = () => {
             <li>Earn competitive compensation for your efforts.</li>
           </ul>
 
-          <button className="bg-green-700 text-white font-medium px-6 py-2 rounded-md  transition-all w-fit">
+          <button onClick={handleJoinAsTutor} className="bg-green-700 text-white font-medium px-6 py-2 rounded-md  transition-all w-fit">
             Join as a Teacher
           </button>
         </div>

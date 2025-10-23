@@ -28,6 +28,7 @@ import AdminRoute from "./AdminRoute";
 import SessionDetails from "../Components/SessionDetails";
 import Payments from "../pages/Dashnoard/Payments/Payments";
 import ViewDetails from "../pages/Dashnoard/Student/ViewDetails";
+import JoinTutorForm from "../Components/JoinTutorForm";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/payment/:id",
         element: <PrivateRoute><Payments /></PrivateRoute>,
+      },
+      {
+        path: "/join-tutor",
+        element: <PrivateRoute><JoinTutorForm /></PrivateRoute>,
       },
       {
         path: "/login",
