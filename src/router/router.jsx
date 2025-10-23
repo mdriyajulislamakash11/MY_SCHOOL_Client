@@ -31,6 +31,7 @@ import ViewDetails from "../pages/Dashnoard/Student/ViewDetails";
 import JoinTutorForm from "../Components/JoinTutorForm";
 import AllClasses from "../Components/AllClasses";
 import AboutStudy from "../pages/Home/AboutStudy";
+import EnrollNowDetails from "../Components/EnrollNowDetails";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,15 @@ const router = createBrowserRouter([
             <JoinTutorForm />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/enrollNow/:id",
+        element: (
+          <PrivateRoute>
+            <EnrollNowDetails />
+          </PrivateRoute>
+        ),
+        loader: ({params}) => fetch(`http://localhost:5000/sessions/${params.id}`)
       },
       {
         path: "/login",
