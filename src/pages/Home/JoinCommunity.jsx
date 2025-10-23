@@ -1,6 +1,5 @@
-import React from "react";
-import Lottie from "lottie-react";
-import communityAnimation from "/public/contact.json"; 
+
+import communityAnimation from "../../assets/Home-Page-image/homepage2.png"; 
 
 const JoinCommunity = () => {
   return (
@@ -34,11 +33,7 @@ const JoinCommunity = () => {
 
         {/* Right: Lottie */}
         <div className="w-full md:w-1/2 flex justify-center">
-          <Lottie
-            animationData={communityAnimation}
-            loop={true}
-            className="w-full md:w-3/4"
-          />
+          <img src={communityAnimation} alt="Community Animation" />
         </div>
       </div>
     </section>
