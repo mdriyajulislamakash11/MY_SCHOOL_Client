@@ -85,7 +85,8 @@ const router = createBrowserRouter([
             <EnrollNowDetails />
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/sessions/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`https://assignment12-server-omega.vercel.app/${params.id}`),
       },
       {
         path: "/login",
