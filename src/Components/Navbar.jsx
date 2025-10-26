@@ -45,47 +45,48 @@ const Navbar = () => {
       </div>
 
       {/* Nav Links (Center) */}
-      
-<div className="flex-none absolute left-1/2 transform -translate-x-1/2">
-  <ul className="menu menu-horizontal p-0 gap-4">
-    <li>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          isActive
-            ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
-            : "hover:text-indigo-600 transition-colors duration-200 pb-1"
-        }
-      >
-        Home
-      </NavLink>
-    </li>
-    <li>
-      <NavLink
-        to="/all-classes"
-        className={({ isActive }) =>
-          isActive
-            ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
-            : "hover:text-indigo-600 transition-colors duration-200 pb-1"
-        }
-      >
-        All Classes
-      </NavLink>
-    </li>
-    <li>
-      <NavLink
-        to="/about-study"
-        className={({ isActive }) =>
-          isActive
-            ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
-            : "hover:text-indigo-600 transition-colors duration-200 pb-1"
-        }
-      >
-        About to Study-buddy
-      </NavLink>
-    </li>
-  </ul>
-</div>
+
+      {/* Nav Links (Center) */}
+      <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+        <ul className="menu menu-horizontal p-0 gap-4">
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+                  : "hover:text-indigo-600 transition-colors duration-200 pb-1"
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/all-classes"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+                  : "hover:text-indigo-600 transition-colors duration-200 pb-1"
+              }
+            >
+              All Classes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about-study"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold text-indigo-600 border-b-2 border-indigo-600 pb-1"
+                  : "hover:text-indigo-600 transition-colors duration-200 pb-1"
+              }
+            >
+              About to Study-buddy
+            </NavLink>
+          </li>
+        </ul>
+      </div>
 
       {/* Right Side (Cart + User) */}
       <div className="flex-none flex items-center">
@@ -139,12 +140,18 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <Link to="/profile" className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </Link>
-              </li>
+              <div className=" md:hidden ">
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about-study">All Classes</Link>
+                </li>
+                <li>
+                  <Link to="/about-study">About to Study-buddy</Link>
+                </li>
+              </div>
+
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>
