@@ -46,7 +46,7 @@ const CreateStudySession = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-gray-100">
+    <div className="md:max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-gray-100">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
         Create Study Session
       </h2>
