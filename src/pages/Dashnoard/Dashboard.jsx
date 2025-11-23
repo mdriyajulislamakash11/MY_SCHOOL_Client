@@ -10,6 +10,8 @@ const Dashboard = ({ recentSessions = [], recentMaterials = [], notifications = 
   const location = useLocation();
   const isDashboardHome = location.pathname === "/dashboard";
 
+ 
+
   const handleLogout = () => {
     logout()
       .then(() => {
@@ -278,6 +280,8 @@ const Dashboard = ({ recentSessions = [], recentMaterials = [], notifications = 
 
           </div>
         )}
+
+        
 
         {/* Outlet for nested routes */}
         <div className="mt-8 bg-white p-8 rounded-3xl shadow-md border border-gray-200">
