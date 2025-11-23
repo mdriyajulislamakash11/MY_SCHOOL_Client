@@ -66,6 +66,8 @@ const Banner = () => {
     },
   ];
 
+  // 
+
   return (
     <div className="md:h-[700px]">
       <Swiper
